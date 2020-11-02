@@ -328,62 +328,63 @@ public class MathOps {
 	}
 	/**
 	 * @param
-	 * @return
+	 * @return true if a is less or equal to b
 	 * */
 	public static boolean lessOrEquals(long a, long b) {
 		return greaterThan(b,a)||equals(a,b);
 	}
 	/**
 	 * @param
-	 * @return
+	 * @return true if a is less or equal to b
 	 * */
 	public static boolean lessOrEquals(BigInteger a, long b) {
 		return greaterThan(b,a)||equals(a,b);
 	}
 	/**
 	 * @param
-	 * @return
+	 * @return true if a is less or equal to b
 	 * */
 	public static boolean lessOrEquals(long a, BigInteger b) {
 		return greaterThan(b,a)||equals(a,b);
 	}
 	/**
 	 * @param
-	 * @return
+	 * @return true if a is less or equal to b
 	 * */
 	public static boolean lessOrEquals(BigInteger a, BigInteger b) {
 		return greaterThan(b,a)||equals(a,b);
 	}
 	/**
 	 * @param
-	 * @return
+	 * @return true if a is less or equal to b
 	 * */
 	public static boolean lessOrEquals(double a, double b) {
 		return greaterThan(b,a)||equals(a,b);
 	}
 	/**
 	 * @param
-	 * @return
+	 * @return true if a is less or equal to b
 	 * */
 	public static boolean lessOrEquals(double a, BigDecimal b) {
 		return greaterThan(b,a)||equals(a,b);
 	}
 	/**
 	 * @param
-	 * @return
+	 * @return true if a is less or equal to b
 	 * */
 	public static boolean lessOrEquals(BigDecimal a, double b) {
 		return greaterThan(b,a)||equals(a,b);
 	}
 	/**
 	 * @param
-	 * @return
+	 * @return true if a is less or equal to b
 	 * */
 	public static boolean lessOrEquals(BigDecimal a, BigDecimal b) {
 		return greaterThan(b,a)||equals(a,b);
 	}
 	/**
 	 * @param
+	 * @return the greatest common divisor of the list
 	 * */
 	public static long GCD(Long...list) {
 		if (list.length==0)
@@ -406,6 +407,7 @@ public class MathOps {
 	}
 	/**
 	 * @param
+	 * @return the greatest common divisor of the list
 	 * */
 	public static BigInteger GCD(Object...list) {
 		BigInteger res=BigInteger.ZERO;
@@ -421,6 +423,7 @@ public class MathOps {
 	}
 	/**
 	 * @param
+	 * @return the greatest common divisor of the list
 	 * */
 	public static long GCD(Integer...list) {
 		if (list.length==0)
@@ -435,7 +438,7 @@ public class MathOps {
 		return res;
 	}
 	/**
-	 * @param
+	 * @param the greatest common divisor of the list
 	 * */
 	public static BigInteger GCD(BigInteger...list) {
 		if (list.length==0)
@@ -456,9 +459,17 @@ public class MathOps {
 			res=GCD(res,list[i]);
 		return res;
 	}
+	/**
+	 * @param
+	 * @return the n-th Fibonacci number
+	 * */
 	public static BigInteger fib(long n) {
-	return fib(BigInteger.valueOf(n));
+		return fib(BigInteger.valueOf(n));
 	}
+	/**
+	 * @param
+	 * @return the n-th Fibonacci number
+	 * */
 	public static BigInteger fib(BigInteger n) {
 		if (sign(n)==-1&&equals(n.mod(BigInteger.valueOf(2)),0))
 			return BigInteger.valueOf(-1).multiply(fib(abs(n)));
@@ -474,9 +485,17 @@ public class MathOps {
 		}
 		return a;
 	}
+	/**
+	 * @param
+	 * @return n!
+	 * */
 	public static BigInteger fak(long n) {
 		return fak(BigInteger.valueOf(n));
 	}
+	/**
+	 * @param
+	 * @return n!
+	 * */
 	public static BigInteger fak(BigInteger n) {
 		if (sign(n)==-1)
 			throw new exceptions.NegativeNumberException();
@@ -485,15 +504,31 @@ public class MathOps {
 			res=res.multiply(bi);
 		return res;
 	}
+	/**
+	 * @param
+	 * @return
+	 * */
 	public static BigInteger nCr(long n,long r) {
 		return fak(n).divide(fak(r).multiply(BigInteger.valueOf(n).subtract(BigInteger.valueOf(r))));
 	}
+	/**
+	 * @param
+	 * @return
+	 * */
 	public static BigInteger nCr(long n,BigInteger r) {
 		return fak(n).divide(fak(r).multiply(BigInteger.valueOf(n).subtract(r)));
 	}
+	/**
+	 * @param
+	 * @return
+	 * */
 	public static BigInteger nCr(BigInteger n,long r) {
 		return fak(n).divide(fak(r).multiply(n.subtract(BigInteger.valueOf(r))));
 	}
+	/**
+	 * @param
+	 * @return
+	 * */
 	public static BigInteger nCr(BigInteger n,BigInteger r) {
 		return fak(n).divide(fak(r).multiply(n.subtract(r)));
 	}
