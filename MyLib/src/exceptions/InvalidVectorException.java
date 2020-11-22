@@ -1,5 +1,5 @@
 package exceptions;
 
-public class InvalidVectorException extends IllegalArgumentException {
+public class InvalidVectorException extends InvalidMatrixException {
 
 }
