@@ -9,6 +9,7 @@ public class MathOps {
 	public static void main(String...args) {
 		for (int i=0;i<10;i++)
 			System.out.println(i+" "+fak(i)+" "+fib(-i));
+		System.out.println(LCM("5","7"));
 	}
 	/**
 	 * @param
@@ -418,6 +419,8 @@ public class MathOps {
 				res=GCD(res,BigInteger.valueOf((Long)obj));
 			else if (obj instanceof Integer)
 				res=GCD(res,BigInteger.valueOf((Integer)obj));
+			else
+				System.out.println("INFORMATION: math.MathOps.GCD: Object of type "+obj.getClass()+" and value "+obj.toString()+" is ignored");
 		}
 		return res;
 	}
@@ -459,6 +462,47 @@ public class MathOps {
 			res=GCD(res,list[i]);
 		return res;
 	}
+	public static BigInteger LCM(Long...list) {
+		BigInteger[] bi=new BigInteger[list.length];
+		for (int i=0;i<list.length;i++) {
+			bi[i]=BigInteger.valueOf(list[i]);
+		}
+		return LCM(bi);
+	}
+	public static BigInteger LCM(Integer...list) {
+		BigInteger[] bi=new BigInteger[list.length];
+		for (int i=0;i<list.length;i++) {
+			bi[i]=BigInteger.valueOf(list[i]);
+		}
+		return LCM(bi);
+	}
+	public static BigInteger LCM(Object...objects) {
+		BigInteger res=BigInteger.ZERO;
+		for (Object obj:objects) {
+			if (obj instanceof BigInteger)
+				res=LCM(res,(BigInteger)obj);
+			else if (obj instanceof Long)
+				res=LCM(res,BigInteger.valueOf((Long)obj));
+			else if (obj instanceof Integer)
+				res=LCM(res,BigInteger.valueOf((Integer)obj));
+			else
+				System.out.println("INFORMATION: math.MathOps.LCM: Object of type "+obj.getClass()+" and value "+obj.toString()+" is ignored");
+		}
+		return res;
+	}
+	public static BigInteger LCM(BigInteger...bigIntegers) {
+		if (bigIntegers.length==0)
+			return BigInteger.ZERO;
+		if (bigIntegers.length==1)
+			return bigIntegers[0];
+		if (bigIntegers.length==2) {
+			return bigIntegers[0].multiply(bigIntegers[1]).divide(GCD(bigIntegers));
+		}
+		BigInteger res=LCM(bigIntegers[0],bigIntegers[1]);
+		for (int i=2;i<bigIntegers.length;i++)
+			res=GCD(res,bigIntegers[i]);
+		return res;
+	}
 	/**
 	 * @param
 	 * @return the n-th Fibonacci number
@@ -498,7 +542,7 @@ public class MathOps {
 	 * */
 	public static BigInteger fak(BigInteger n) {
 		if (sign(n)==-1)
-			throw new exceptions.NegativeNumberException();
+			throw new exceptions.NegativeNumberException(n);
 		BigInteger res=BigInteger.ONE;
 		for (BigInteger bi=BigInteger.valueOf(2);!greaterThan(bi,n);bi=bi.add(BigInteger.ONE))
 			res=res.multiply(bi);
@@ -509,27 +553,29 @@ public class MathOps {
 	 * @return
 	 * */
 	public static BigInteger nCr(long n,long r) {
-		return fak(n).divide(fak(r).multiply(BigInteger.valueOf(n).subtract(BigInteger.valueOf(r))));
+		return nCr(BigInteger.valueOf(n),BigInteger.valueOf(r));
 	}
 	/**
 	 * @param
 	 * @return
 	 * */
 	public static BigInteger nCr(long n,BigInteger r) {
-		return fak(n).divide(fak(r).multiply(BigInteger.valueOf(n).subtract(r)));
+		return nCr(BigInteger.valueOf(n),r);
 	}
 	/**
 	 * @param
 	 * @return
 	 * */
 	public static BigInteger nCr(BigInteger n,long r) {
-		return fak(n).divide(fak(r).multiply(n.subtract(BigInteger.valueOf(r))));
+		return nCr(n,BigInteger.valueOf(r));
 	}
 	/**
 	 * @param
 	 * @return
 	 * */
 	public static BigInteger nCr(BigInteger n,BigInteger r) {
+		if (lessThan(n,0)||lessThan(r,n)) 
+			return BigInteger.ZERO;
 		return fak(n).divide(fak(r).multiply(n.subtract(r)));
 	}
 }

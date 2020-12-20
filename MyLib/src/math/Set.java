@@ -10,12 +10,24 @@ public class Set {
 			}
 		}
 	}
+	private Set(ArrayList<Object> data) {
+		this.data=data;
+	}
 	public Object get(int index) {
 		return data.get(index);
 	}
 	public void add(Object o) {
-		if (o!=null)
-			data.add(o);
+		add(data.size(),o);
+	}
+	public void add(int index, Object o) {
+		if (o!=null) 
+			data.add(index,o);
+	}
+	public Object remove(int index) {
+		return data.remove(index);
+	}
+	public int size() {
+		return data.size();
 	}
 	public String toString() {
 		if (data.isEmpty())
@@ -25,9 +37,12 @@ public class Set {
 		sb.append(data.get(0));
 		for (int i=1;i<data.size();i++) {
 			sb.append(", ");
-			sb.append(data.get(0));
+			sb.append(data.get(i));
 		}
 		sb.append('}');
 		return sb.toString();
+	}
+	public Set clone() {
+		return new Set(this.data);
 	}
 }

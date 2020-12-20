@@ -1,6 +1,7 @@
 package generators;
 
 import java.math.BigInteger;
+
 import exceptions.IllegalValueException;
 import math.MathOps;
 
@@ -19,7 +20,7 @@ public class FibonacciGenerator extends Generator {
 	public FibonacciGenerator(BigInteger start,BigInteger stop){
 		super(true);
 		if (MathOps.lessThan(stop, start))
-			throw new IllegalValueException();
+			throw new IllegalValueException("Expected start("+start+") to be less or equals than stop("+stop+"). Stop smaller than start.");
 		a=BigInteger.ZERO;
 		b=BigInteger.ONE;
 		n=BigInteger.ZERO;
@@ -53,5 +54,6 @@ public class FibonacciGenerator extends Generator {
 		FibonacciGenerator fib=new FibonacciGenerator(3,10);
 		while (fib.hasNext())
 			System.out.println(fib.next());
+		fib=new FibonacciGenerator(10,3);
 	}
 }
