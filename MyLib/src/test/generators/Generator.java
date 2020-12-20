@@ -1,4 +1,4 @@
-package generators;
+package test.generators;
 
 public abstract class Generator {
 	public abstract Object generate();

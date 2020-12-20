@@ -1,4 +1,4 @@
-package generators;
+package test.generators;
 
 import java.math.BigInteger;
 
