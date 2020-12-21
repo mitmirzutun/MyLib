@@ -1,5 +1,7 @@
 package math;
 import java.util.ArrayList;
+
+import exceptions.NoElementInSetException;
 public class Set {
 	private ArrayList<Object> data;
 	public Set(Object...objects) {
@@ -11,7 +13,7 @@ public class Set {
 		}
 	}
 	private Set(ArrayList<Object> data) {
-		this.data=data;
+		this.data=new ArrayList<Object>(data);
 	}
 	public Object get(int index) {
 		return data.get(index);
@@ -24,6 +26,8 @@ public class Set {
 			data.add(index,o);
 	}
 	public Object remove(int index) {
+		if (data.size()==0)
+			throw new NoElementInSetException();
 		return data.remove(index);
 	}
 	public int size() {
@@ -44,5 +48,9 @@ public class Set {
 	}
 	public Set clone() {
 		return new Set(this.data);
+	}
+	public static void main(String...args) {
+		Set set1=new Set("1","2","3","4","5"),set2=new Set(set1);
+		System.out.println(set2);
 	}
 }
