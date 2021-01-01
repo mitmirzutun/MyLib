@@ -7,9 +7,6 @@ import java.math.BigInteger;
  * */
 public class MathOps {
 	public static void main(String...args) {
-		for (int i=0;i<10;i++)
-			System.out.println(i+" "+fak(i)+" "+fib(-i));
-		System.out.println(LCM("5","7"));
 	}
 	/**
 	 * @param
@@ -577,5 +574,21 @@ public class MathOps {
 		if (lessThan(n,0)||lessThan(r,n)) 
 			return BigInteger.ZERO;
 		return fak(n).divide(fak(r).multiply(n.subtract(r)));
+	}
+	public static long mod(long a,long m) {
+		if (a>0)
+			return a%m;
+		return mod(a%m+m,m);
+	}
+	public static BigInteger mod(long a,BigInteger m) {
+		return mod(BigInteger.valueOf(a),m);
+	}
+	public static BigInteger mod(BigInteger a,long m) {
+		return mod(a,BigInteger.valueOf(m));
+	}
+	public static BigInteger mod(BigInteger a,BigInteger m) {
+		if(greaterThan(a, m))
+			return a.mod(m);
+		return mod(a.mod(m).add(m),m);
 	}
 }
