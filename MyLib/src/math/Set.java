@@ -1,5 +1,6 @@
 package math;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import exceptions.NoElementInSetException;
 public class Set {
@@ -22,8 +23,9 @@ public class Set {
 		add(data.size(),o);
 	}
 	public void add(int index, Object o) {
-		if (o!=null) 
+		if (o!=null) {
 			data.add(index,o);
+		}
 	}
 	public Object remove(int index) {
 		if (data.size()==0)
